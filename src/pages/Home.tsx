@@ -1,4 +1,4 @@
-import PopularMovies from '@/components/home/PopularMovies'
+import Movies from '@/components/home/Movies'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 
@@ -41,10 +41,14 @@ const Home = () => {
           </TabsList>
           <div className='border-b border-[#4a1111] mb-4'></div>
           <TabsContent value="popular">
-            <PopularMovies />
+            <Movies type="popular" />
           </TabsContent>
-          <TabsContent value="top-rated">Top Rated Movies</TabsContent>
-          <TabsContent value="upcoming">Upcoming Movies</TabsContent>
+          <TabsContent value="top-rated">
+            <Movies type="top_rated" />
+          </TabsContent>
+          <TabsContent value="upcoming">
+            <Movies type="upcoming" />
+          </TabsContent>
         </Tabs>
       </div>
 
