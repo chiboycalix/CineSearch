@@ -2,16 +2,19 @@ import { Icon } from '@iconify/react'
 import { Button } from '../ui/button'
 import { useEffect, useState } from 'react'
 import { Loader2 } from 'lucide-react';
+import { useNavigate } from 'react-router';
 
 type MovieProps = {
   title: string;
   vote_average: number;
   release_date: string;
   poster_path: string;
+  id: number;
 }
 const Movies = ({ type }: { type: 'top_rated' | 'popular' | 'upcoming' }) => {
   const [movies, setMovies] = useState<MovieProps[]>([])
   const [loadingMovies, setLoadingMovies] = useState(true)
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -34,7 +37,7 @@ const Movies = ({ type }: { type: 'top_rated' | 'popular' | 'upcoming' }) => {
       <div className='grid grid-cols-5 gap-4'>
         {
           movies.map((movie, idx) => (
-            <div key={idx} className=' rounded-lg'>
+            <div key={idx} className='rounded-lg cursor-pointer' onClick={() => navigate(`/details/${movie.id}`)}>
               <img
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}

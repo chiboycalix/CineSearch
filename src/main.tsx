@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import Movies from './pages/Movies.tsx';
 import Home from './pages/Home.tsx';
 import TvShows from './pages/TvShows.tsx';
+import MovieDetails from './components/home/MovieDetails.tsx';
 
 
 createRoot(document.getElementById('root')!).render(
@@ -13,6 +14,7 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
+          <Route path="/details/:movieId" element={<MovieDetails />} />
           <Route index element={<Home />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/tv-shows" element={<TvShows />} />
