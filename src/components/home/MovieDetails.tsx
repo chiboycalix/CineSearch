@@ -27,24 +27,24 @@ const MovieDetails = () => {
     }
     fetchMovieDetails()
   }, [params])
-  console.log({ movieDetails })
+
   return (
-    <div className='w-full min-h-screen'>
-      <div className='w-full h-[88vh] relative'>
-        <img src={`https://image.tmdb.org/t/p/w500${movieDetails?.backdrop_path}`} alt={movieDetails?.title} className='w-full h-full object-cover' />
-        <div className='absolute bottom-0 left-0 flex items-center justify-start gap-2 w-full'>
+    <div className='w-full min-h-screen '>
+      <div className='w-full h-[88vh] relative '>
+        <img src={`https://image.tmdb.org/t/p/w500${movieDetails?.backdrop_path}`} alt={movieDetails?.title} className='w-full h-full object-cover  bg-linear-to-t from-[#221111] to-white' />
+        <div className='absolute bottom-2 left-10 flex items-center justify-start gap-2 w-full'>
           <img src={`https://image.tmdb.org/t/p/w500${movieDetails?.poster_path}`} alt={movieDetails?.title} className='w-56 h-56 object-cover border-4 border-[#4a1111] rounded-lg' />
           <div>
             <h1 className='text-3xl font-bold text-white'>{movieDetails?.title}</h1>
-            <p className='text-base text-[#ec1313]'>{movieDetails?.tagline}</p>
-            <div className='flex items-center justify-start gap-6'>
+            <p className='text-base text-[#ec1313] font-bold'>{movieDetails?.tagline}</p>
+            <div className='flex items-center justify-start gap-6 mt-4'>
               <div className='flex items-center justify-start gap-2'>
                 <Icon icon="ci:calendar" width={20} height={20} className='text-[#cbd5a1]' />
-                <p className='text-sm text-[#94A3B8]'>{moment(movieDetails?.release_date).format('MMM DD, YYYY')}</p>
+                <p className='text-sm text-[#ffffff]'>{moment(movieDetails?.release_date).format('MMM DD, YYYY')}</p>
               </div>
               <div className='flex items-center justify-start gap-2'>
                 <Icon icon="mdi:clock-outline" width={20} height={20} className='text-[#cbd5a1]' />
-                <p className='text-sm text-[#94A3B8]'>{movieDetails?.runtime} minutes</p>
+                <p className='text-sm text-[#ffffff]'>{movieDetails?.runtime} minutes</p>
               </div>
             </div>
           </div>

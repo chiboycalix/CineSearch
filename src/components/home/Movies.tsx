@@ -41,7 +41,7 @@ const Movies = ({ type }: { type: 'top_rated' | 'popular' | 'upcoming' }) => {
               <img
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
-                className='w-full border border-[#4a1111] rounded-lg'
+                className='w-full h-[350px] border border-[#4a1111] rounded-lg'
               />
               <h1 className='mt-4 text-md'>{movie.title}</h1>
               <div className='flex items-center justify-between gap-2'>
