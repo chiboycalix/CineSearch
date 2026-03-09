@@ -2,6 +2,7 @@ import { Icon } from "@iconify/react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import moment from "moment";
+import TopCast from "../top-cast";
 type MovieDetailsProps = {
   title: string;
   vote_average: number;
@@ -84,7 +85,7 @@ const MovieDetails = () => {
                     {movieDetails?.genres?.map((genre) => {
                       return (
                         <div
-                          className="border border-[#EC1313] bg-[#311717] rounded-lg px-2 py-1 text-sm font-bold"
+                          className="border border-[#EC1313] bg-[#722b29] rounded-lg px-2 py-1 text-sm font-semibold uppercase"
                           key={genre.id}
                         >
                           {genre.name}
@@ -95,46 +96,57 @@ const MovieDetails = () => {
                 </div>
               </div>
             </div>
+
+
+            <div className="flex items-center justify-center gap-4 mt-10 ">
+              <div className="">
+                <button className=" flex gap-2 bg-[#EC1313] text-white text-xl py-4 px-10 rounded-md hover:bg-[#d31010] transition-colors cursor-pointer">
+                  <Icon
+                    icon="octicon:play-24"
+                    width={25}
+                    height={25}
+                    className="text-white inline-block  font-bold"
+                  />
+                  Watch Trailer
+                </button>
+              </div>
+              <div>
+                <button className="blur-[0.5px] cursor-pointer flex gap-2 text-white text-xl py-4 px-8 rounded-md hover:bg-[#d31010] bg-[#473d3a] ml-4 border border-[#4a1111] ">
+                  <Icon
+                    icon="stash:save-ribbon"
+                    width={25}
+                    height={25}
+                    className="text-white inline-block  font-bold"
+                  />
+                  Add to Watchlist
+                </button>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
-      <div>
-        <div className="flex items-center justify-center gap-4 mb-6 ">
-          <div className="">
-            <button className=" flex gap-2 bg-[#EC1313] text-white text-xl py-4 px-10 rounded-md hover:bg-[#d31010] transition-colors">
-              <Icon
-                icon="octicon:play-24"
-                width={25}
-                height={25}
-                className="text-white inline-block  font-bold"
-              />
-              <h1> Watch Trailer</h1>
-            </button>
-          </div>
-          <div>
-            <button className="blur-[0.5px] flex gap-2 text-white text-xl py-4 px-8 rounded-md hover:bg-[#d31010] transition-colors ml-4 border border-[#4a1111] ">
-              <Icon
-                icon="stash:save-ribbon"
-                width={25}
-                height={25}
-                className="text-white inline-block  font-bold"
-              />
-              <h1> Add to Watchlist</h1>
-            </button>
-          </div>
-        </div>
-        px-2
-        <div className="flex items-start justify-start gap-6 px-10">
-          <div className="basis-[70%] px-30 ">
+      <div className="mt-20 py-10">
+        <div className="flex items-end justify-start gap-6 px-10">
+          <div className="basis-[70%] ">
             <h1 className="text-white text-2xl  font-bold pl-4 border-l-4 border-[#EC1313] ">
               Overview
             </h1>
             <div className="text-white text-xl mt-3">
               {movieDetails?.overview}
             </div>
-            <div>
-              <div className="text-white text-2xl font-bold mt-10 pl-4 border-l-4 border-[#EC1313]">
-                Top Cast
+            <div className="mt-10">
+              <div className="flex items-center justify-between ">
+                <div className="text-white text-2xl font-bold pl-4 border-l-4 border-[#EC1313]">
+                  Top Cast
+                </div>
+
+                <p className="text-[#EC1313] font-bold text-sm mt-4">
+                  Full Cast & Crew
+                </p>
+              </div>
+              <div className="mt-4">
+                <TopCast />
               </div>
             </div>
           </div>
@@ -142,43 +154,51 @@ const MovieDetails = () => {
           <div className="basis-[30%] border border-[#4a1111]  border-md bg-[#311717]  rounded-lg p-4 ">
             <h1 className="text-white text-xl"> Movie Details</h1>
             <h1 className="text-xl  text-white mt-4">
-              <h1 className="text-sm text-[#94A3B8]">Status</h1>
+              <h1 className="text-sm text-[#94A3B8] uppercase">Status</h1>
               {movieDetails?.status}
             </h1>
             <p className="text-base text-white mt-4 ">
-              <h1 className="text-sm text-[#94A3B8]">Original Language</h1>
+              <h1 className="text-sm text-[#94A3B8] uppercase">Original Language</h1>
               {movieDetails?.original_language.toUpperCase()} |{" "}
               {movieDetails?.vote_average}
             </p>
             <p className="text-base text-white mt-4 ">
-              <h1 className="text-sm text-[#94A3B8]">Budget</h1>
-              {movieDetails?.budget}
+              <h1 className="text-sm text-[#94A3B8] uppercase">Budget</h1>
+
+              {
+                new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(
+                  movieDetails?.budget || 0,
+                )
+              }
             </p>
             <p className="text-base text-white mt-4 border-b border-[#4a1111] pb-4 ">
-              <h1 className="text-sm text-[#94A3B8]">Revenue</h1>
-              {movieDetails?.revenue}
+              <h1 className="text-sm text-[#94A3B8] uppercase">Revenue</h1>
+              {
+                new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(
+                  movieDetails?.revenue || 0,
+                )
+              }
+
             </p>
             <div className="flex items-center justify-start gap-2 mt-4">
-              <h1 className="text-xl text-[#94A3B8]">Keywords</h1>
+              <h1 className="text-xl text-[#94A3B8] uppercase">Keywords</h1>
             </div>
             <div className="mb-10">
-              <div className=" flex items-center justify-start gap-2 mt-4 ">
-                <h1 className="text-sm text-[#94A3B8] border border-[#4a1111] rounded-lg p-2 w-[80%]">
-                  Artifitial Intelligence
+              <div className=" flex items-center justify-start gap-2 mt-4 flex-wrap ">
+                <h1 className="text-sm bg-[#521a1b] text-white p-2 rounded-lg">
+                  artifitial intelligence
                 </h1>
-                <h1 className="text-sm text-[#94A3B8] flex border border-[#4a1111] rounded-lg p-2">
-                  Blackhole
+                <h1 className="text-sm bg-[#521a1b] text-white p-2 rounded-lg">
+                  black hole
                 </h1>
-              </div>
-              <div className=" flex items-center justify-start gap-2 mt-4 ">
-                <h1 className="text-sm text-[#94A3B8] border border-[#4a1111] rounded-lg p-2 w-[80%]">
-                  Space Time
+                <h1 className="text-sm bg-[#521a1b] text-white p-2 rounded-lg">
+                  spacetime
                 </h1>
-                <h1 className="text-sm text-[#94A3B8] flex border border-[#4a1111] rounded-lg p-2">
-                  Nasa
+                <h1 className="text-sm bg-[#521a1b] text-white p-2 rounded-lg">
+                  nasa
                 </h1>
-                <h1 className="text-sm text-[#94A3B8] flex border border-[#4a1111] rounded-lg p-2">
-                  Warmhole
+                <h1 className="text-sm bg-[#521a1b] text-white p-2 rounded-lg">
+                  warmhole
                 </h1>
               </div>
             </div>
