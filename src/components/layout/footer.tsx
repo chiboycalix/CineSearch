@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 const footer = () => {
   return (
-    <div className="bg-[#311717] w-full h-24 border border-[#4a1111] flex items-center justify-between gap-2 px-20  py-20 text-xl">
+    <div className="bg-[#311717] w-full h-24 border border-[#4a1111] flex items-center justify-between gap-2 px-20  py-20 text-xl ">
       <div className="flex items-center gap-2  text-[#EC1313]">
         <Icon
           icon="material-symbols:movie-outline"
