@@ -4,7 +4,7 @@ import Footer from "./components/layout/footer";
 
 function App() {
   const location = useLocation();
-  console.log({ location })
+
   const isMovieDetails = location?.pathname.includes('/details/')
   return (
     <div>

@@ -7,6 +7,7 @@ import Movies from './pages/Movies.tsx';
 import Home from './pages/Home.tsx';
 import TvShows from './pages/TvShows.tsx';
 import MovieDetails from './components/home/MovieDetails.tsx';
+import SearchResult from './pages/SearchResult.tsx';
 
 
 createRoot(document.getElementById('root')!).render(
@@ -18,6 +19,7 @@ createRoot(document.getElementById('root')!).render(
           <Route index element={<Home />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/tv-shows" element={<TvShows />} />
+          <Route path="/search-result" element={<SearchResult />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,10 +1,11 @@
 
 
 import Logo from '../logo'
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { Input } from '../ui/input';
 import { Icon } from '@iconify/react';
 import Avatar from '@/assets/avatar.png';
+import { useEffect, useState } from 'react';
 
 const navLinks = [
   {
@@ -50,6 +51,17 @@ const NavItem = ({ label, to }: NavItemProps) => {
 }
 
 const Header = () => {
+  const [searchQuery, setSearchQuery] = useState('')
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (searchQuery.length > 0) {
+      navigate(`/search-result?query=${searchQuery}`)
+    } else {
+      navigate('/')
+    }
+  }, [searchQuery, navigate])
+
   return (
     <div className='bg-[#221010] w-full h-24 border-b border-[#4a1111] flex items-center justify-between gap-2 px-20'>
       <div className='flex items-center gap-8'>
@@ -65,7 +77,11 @@ const Header = () => {
       <div className='text-white flex items-center gap-6'>
         <div className='flex items-center gap-2 relative'>
           <Icon icon="material-symbols:search" width={20} height={20} className='text-[#6b7280] absolute left-2 top-1/2 -translate-y-1/2' />
-          <Input placeholder="Search Movies..." className='pl-8 text-[#6b7280] bg-[#391011] border-[#4a1111] focus-visible:ring-0 focus-visible:ring-offset-0' />
+          <Input
+            placeholder="Search Movies..."
+            className='pl-8 text-[#6b7280] bg-[#391011] border-[#4a1111] focus-visible:ring-0 focus-visible:ring-offset-0'
+            onChange={(event) => setSearchQuery(event.target.value)}
+          />
         </div>
         <img src={Avatar} className='w-10 h-10 rounded-full' />
       </div>
