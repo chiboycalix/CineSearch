@@ -60,7 +60,7 @@ const Header = () => {
     } else {
       navigate('/')
     }
-  }, [searchQuery, navigate])
+  }, [searchQuery])
 
   return (
     <div className='bg-[#221010] w-full h-24 border-b border-[#4a1111] flex items-center justify-between gap-2 px-20'>
@@ -81,6 +81,7 @@ const Header = () => {
             placeholder="Search Movies..."
             className='pl-8 text-[#6b7280] bg-[#391011] border-[#4a1111] focus-visible:ring-0 focus-visible:ring-offset-0'
             onChange={(event) => setSearchQuery(event.target.value)}
+          // value={searchQuery}
           />
         </div>
         <img src={Avatar} className='w-10 h-10 rounded-full' />

@@ -9,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import NoResult from './NoResult';
 
 
 type MovieCardProps = {
@@ -46,7 +47,6 @@ const SearchResult = () => {
   const location = useLocation();
   const query = location.search.split('=')[1]
 
-
   useEffect(() => {
     const fetchSearchResult = async () => {
 
@@ -66,6 +66,12 @@ const SearchResult = () => {
       <Loader2 className='w-10 h-10 animate-spin' />
     </div>
   }
+
+  if (totalResults === 0) {
+    return <NoResult query={query.split("%20").join(" ")} />
+  }
+
+
   return (
     <div className='text-white py-10'>
       <div>
@@ -99,17 +105,6 @@ const SearchResult = () => {
       </div>
       <div className='mt-10 grid grid-cols-5 gap-8'>
 
-        {/* <MovieCard />
-        <MovieCard />
-        <MovieCard />
-
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-
-        <MovieCard />
-        <MovieCard />
-        <MovieCard /> */}
         {
           searchResult.map((movie: MovieCardProps) => (
             <MovieCard key={movie.id} movie={movie} />
